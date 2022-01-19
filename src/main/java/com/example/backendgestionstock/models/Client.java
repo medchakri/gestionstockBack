@@ -1,6 +1,9 @@
 package com.example.backendgestionstock.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "client")
@@ -20,8 +23,19 @@ public class Client {
     @Column(name = "adresse")
     private String adresse;
 
+    @OneToMany(targetEntity = Vent.class, mappedBy = "client")
+    @JsonBackReference
+    private List<Vent> vents;
+
     public Client() {
 
+    }
+
+    public Client(String nom, String prenom, String adresse, List<Vent> vents) {
+        this.nom = nom;
+        this.prenom = prenom;
+        this.adresse = adresse;
+        this.vents = vents;
     }
 
     public Client(String nom, String prenom, String adresse) {
@@ -64,5 +78,12 @@ public class Client {
         this.adresse = adresse;
     }
 
+    public List<Vent> getVents() {
+        return vents;
+    }
+
+    public void setVents(List<Vent> vents) {
+        this.vents = vents;
+    }
 }
 

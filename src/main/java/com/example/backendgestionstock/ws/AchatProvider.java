@@ -1,26 +1,25 @@
 package com.example.backendgestionstock.ws;
 
-import com.example.backendgestionstock.models.Client;
-import com.example.backendgestionstock.models.Stocke;
-import com.example.backendgestionstock.service.ClientService;
-import com.example.backendgestionstock.service.StockService;
+import com.example.backendgestionstock.models.Achat;
+import com.example.backendgestionstock.service.AchatService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
-@RestController
-@RequestMapping("/api/client")
-public class ClientProvider {
-    @Autowired
-    private ClientService service;
 
-    @PostMapping("")
-    public int save(Client client) {
-        return service.save(client);
+@RestController
+@RequestMapping("/api/achat")
+public class AchatProvider {
+
+    @Autowired
+    private AchatService service;
+
+    @PostMapping("id/{id}")
+    public int save(Achat achat, Long id) {
+        return service.save(achat, id);
     }
 
     @GetMapping("id/{id}")
-    public Client findById(Long id) {
+    public Achat findById(@PathVariable Long id) {
         return service.findById(id);
     }
 
@@ -35,7 +34,7 @@ public class ClientProvider {
     }
 
     @GetMapping("")
-    public List<Client> findAll() {
+    public List<Achat> findAll() {
         return service.findAll();
     }
 }

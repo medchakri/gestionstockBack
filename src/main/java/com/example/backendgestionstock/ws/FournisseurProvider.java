@@ -10,33 +10,33 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/fournisseur")
+@RequestMapping("/api/fournisseur")
 public class FournisseurProvider {
 
     @Autowired
     private FournisseurService service;
 
-    @PostMapping("/")
+    @PostMapping("")
     public int save(Fournisseur fournisseur) {
         return service.save(fournisseur);
     }
 
-    @GetMapping("/id/{id}")
+    @GetMapping("/{id}")
     public Fournisseur findById(Long id) {
         return service.findById(id);
     }
 
-    @DeleteMapping("/id/{id}")
+    @DeleteMapping("/{id}")
     public void deleteById(@PathVariable Long id) {
         service.deleteById(id);
     }
 
-    @DeleteMapping("/")
+    @DeleteMapping("")
     public void deleteAll() {
         service.deleteAll();
     }
 
-    @GetMapping("/")
+    @GetMapping("")
     public List<Fournisseur> findAll() {
         return service.findAll();
     }
